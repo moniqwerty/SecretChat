@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.users.model.QBUser;
 import com.quickblox.sample.chat.R;
 
@@ -28,15 +29,50 @@ public class UsersAdapter extends BaseAdapter {
         this.dataSource = dataSource;
         this.inflater = LayoutInflater.from(ctx);
         filtered = new ArrayList<>();
+        final QBUser self = ChatService.getInstance().getCurrentUser();
+        String location = self.getCustomData().toString();
+        String [] latLong = location.split(";");
+        double myLat = Double.parseDouble(latLong[0]);
+        double myLon = Double.parseDouble(latLong[1]);
+
         for (QBUser u : dataSource)
         {
-            if (u.getLogin().equals("martin"))
+            try
             {
-                filtered.add(u);
+                location = u.getCustomData().toString();
+                latLong = location.split(";");
+                if (directDistance(myLat,myLon,Double.parseDouble(latLong[0]),Double.parseDouble(latLong[1]))>10)
+                {
+                    continue;
+                }
             }
+            catch (Exception e)
+            {
+                continue;
+            }
+            filtered.add(u);
         }
     }
 
+    private double ToRadians(double degrees)
+    {
+        double radians = degrees * Math.PI / 180;
+        return radians;
+    }
+
+    public double directDistance(double lat1, double lng1, double lat2, double lng2)
+    {
+        double earthRadius = 3958.75;
+        double dLat = ToRadians(lat2-lat1);
+        double dLng = ToRadians(lng2-lng1);
+        double a = Math.sin(dLat/2) * Math.sin(dLat / 2) +
+                Math.cos(ToRadians(lat1)) * Math.cos(ToRadians(lat2)) *
+                        Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double dist = earthRadius * c;
+        double meterConversion = 1609.00;
+        return dist * meterConversion;
+    }
     public List<QBUser> getSelected() {
         return selected;
     }
@@ -73,7 +109,6 @@ public class UsersAdapter extends BaseAdapter {
         //final QBUser user = dataSource.get(position);
         final QBUser user = filtered.get(position);
 
-
             if (user != null) {
                 holder.login.setText(user.getLogin());
                 holder.add.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +123,7 @@ public class UsersAdapter extends BaseAdapter {
                 });
                 holder.add.setChecked(selected.contains(user));
             }
-        
+
 
         return convertView;
     }

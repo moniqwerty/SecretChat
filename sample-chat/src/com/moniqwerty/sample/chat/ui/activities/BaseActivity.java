@@ -1,6 +1,7 @@
 package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.moniqwerty.sample.chat.core.LocationService;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.moniqwerty.sample.chat.core.ApplicationSessionStateCallback;
 import com.moniqwerty.sample.chat.core.ChatService;
@@ -40,6 +42,7 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
 
         // 'initialised' will be true if it's the 1st start of the app or if the app's process was killed by OS(or user)
         //
+
         boolean initialised = ChatService.initIfNeed(this);
         if(initialised && savedInstanceState != null){
             needToRecreateSession = true;
