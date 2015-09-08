@@ -143,8 +143,8 @@ public class LocationService extends Service
             if(isBetterLocation(loc, previousBestLocation)) {
                 loc.getLatitude();
                 loc.getLongitude();
-                intent.putExtra("Latitude", loc.getLatitude());
-                intent.putExtra("Longitude", loc.getLongitude());
+                intent.putExtra("Latitude", loc.getLatitude()+"");
+                intent.putExtra("Longitude", loc.getLongitude()+"");
                 intent.putExtra("Provider", loc.getProvider());
                 sendBroadcast(intent);
                 Log.i("**********", "Broadcast sent");

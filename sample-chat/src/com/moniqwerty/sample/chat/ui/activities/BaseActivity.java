@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.moniqwerty.sample.chat.core.LocationService;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.moniqwerty.sample.chat.core.ApplicationSessionStateCallback;
 import com.moniqwerty.sample.chat.core.ChatService;
@@ -153,52 +155,43 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
     public void onFinishSessionRecreation(boolean success) {
 
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        // Register mMessageReceiver to receive messages.
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("LocationChange"));
-    }
 
-    // handler for received Intents for the "my-event" event
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Extract data included in the Intent
-            Log.i("**********", "received");
-            String lat = intent.getStringExtra("Latitude");
-            String lon = intent.getStringExtra("Longitude");
-            try {
-                Log.i("**********", "Try update");
-                QBUser self = ChatService.getInstance().getCurrentUser();
-                ChatService.getInstance().login(self, new QBEntityCallbackImpl());
-                self.setCustomData(lat + ";" + lon);
-                QBUsers.updateUser(self, new QBEntityCallbackImpl<QBUser>() {
-                    @Override
-                    public void onSuccess(QBUser qbUser, Bundle bundle) {
-
-                    }
-
-                    @Override
-                    public void onError(List<String> strings) {
-                        Log.i("**********", strings.toString());
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                Log.i("**********", e.toString());
-                Log.i("**********", "Fail miserably");
-            }
+            updateLocation(intent);
         }
     };
 
+    private void updateLocation(Intent intent) {
+        try {
+            Log.i("**********", "Broadcast recieved");
+            final QBUser self = ChatService.getInstance().getCurrentUser();
+            self.setCustomData(intent.getStringExtra("Latitude") + ";" + intent.getStringExtra("Longitude"));
+
+            QBUsers.updateUser(self, new QBEntityCallbackImpl<QBUser>() {
+                @Override
+                public void onSuccess(QBUser qbUser, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onError(List<String> strings) {
+                    Log.i("**********", strings.toString());
+                }
+            });
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
     @Override
-    protected void onPause() {
-        // Unregister since the activity is not visible
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
-        super.onPause();
+    public void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver, new IntentFilter(
+                LocationService.BROADCAST_ACTION));
     }
 }
