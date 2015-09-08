@@ -6,18 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.moniqwerty.sample.chat.core.LocationService;
-import com.quickblox.core.QBEntityCallbackImpl;
 import com.moniqwerty.sample.chat.core.ApplicationSessionStateCallback;
 import com.moniqwerty.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.core.LocationService;
+import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.users.QBUsers;
 import com.quickblox.users.model.QBUser;
 
@@ -50,9 +47,9 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
         //
 
         boolean initialised = ChatService.initIfNeed(this);
-        if(initialised && savedInstanceState != null){
+        if (initialised && savedInstanceState != null) {
             needToRecreateSession = true;
-        }else{
+        } else {
             sessionActive = true;
         }
         getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
@@ -62,7 +59,7 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        if(needToRecreateSession){
+        if (needToRecreateSession) {
             needToRecreateSession = false;
 
             Log.d(TAG, "Need to restore chat connection");
@@ -78,7 +75,7 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
         }
     }
 
-    private void recreateSession(final QBUser user){
+    private void recreateSession(final QBUser user) {
         sessionActive = false;
         this.onStartSessionRecreation();
 
@@ -123,7 +120,7 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         QBUser currentUser = ChatService.getInstance().getCurrentUser();
-        if(currentUser != null) {
+        if (currentUser != null) {
             outState.putString(USER_LOGIN_KEY, currentUser.getLogin());
             outState.putString(USER_PASSWORD_KEY, currentUser.getPassword());
         }
@@ -132,8 +129,8 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
         super.onSaveInstanceState(outState);
     }
 
-    private void showProgressDialog(){
-        if(progressDialog == null) {
+    private void showProgressDialog() {
+        if (progressDialog == null) {
             progressDialog = new ProgressDialog(BaseActivity.this);
             progressDialog.setTitle("Loading");
             progressDialog.setMessage("Restoring chat session...");
@@ -141,11 +138,6 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
         }
         progressDialog.show();
     }
-
-
-    //
-    // ApplicationSessionStateCallback
-    //
 
     @Override
     public void onStartSessionRecreation() {
@@ -155,7 +147,6 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
     public void onFinishSessionRecreation(boolean success) {
 
     }
-
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -167,24 +158,13 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
     private void updateLocation(Intent intent) {
         try {
             Log.i("**********", "Broadcast recieved");
-            final QBUser self = ChatService.getInstance().getCurrentUser();
-            self.setCustomData(intent.getStringExtra("Latitude") + ";" + intent.getStringExtra("Longitude"));
-
-            QBUsers.updateUser(self, new QBEntityCallbackImpl<QBUser>() {
-                @Override
-                public void onSuccess(QBUser qbUser, Bundle bundle) {
-
-                }
-
-                @Override
-                public void onError(List<String> strings) {
-                    Log.i("**********", strings.toString());
-                }
-            });
-        }
-        catch (Exception e)
-        {
-
+            final QBUser currentUser = ChatService.getInstance().getCurrentUser();
+            final QBUser user = new QBUser();
+            user.setId(currentUser.getId());
+            user.setCustomData(intent.getStringExtra("Latitude") + ";" + intent.getStringExtra("Longitude"));
+            QBUsers.updateUser(user);
+        } catch (Exception e) {
+            Log.i("**********", "Failed while updating user location data");
         }
     }
 
