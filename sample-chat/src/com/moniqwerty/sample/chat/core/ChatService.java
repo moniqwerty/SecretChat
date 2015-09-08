@@ -101,7 +101,32 @@ public class ChatService {
             }
         });
     }
+    public void signUp(final QBUser user, final QBEntityCallback callback) {
 
+        // Create REST API session
+        QBAuth.createSession( new QBEntityCallbackImpl<QBSession>() {
+            @Override
+            public void onSuccess(QBSession session, Bundle args) {
+                user.setId(session.getUserId());
+                QBUsers.signUp(user, new QBEntityCallbackImpl<QBUser>() {
+                    @Override
+                    public void onSuccess(QBUser qbUser, Bundle bundle) {
+                        callback.onSuccess();
+                    }
+
+                    @Override
+                    public void onError(List<String> list) {
+                        callback.onError(list);
+                    }
+                });
+            }
+
+            @Override
+            public void onError(List<String> errors) {
+                callback.onError(errors);
+            }
+        });
+    }
     public void logout(){
         chatService.logout(new QBEntityCallbackImpl() {
             @Override
