@@ -1,10 +1,12 @@
 package com.moniqwerty.sample.chat;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.moniqwerty.sample.chat.core.LocationService;
 import com.quickblox.core.QBSettings;
 
 import vc908.stickerfactory.StickersManager;
@@ -16,9 +18,6 @@ public class ApplicationSingleton extends Application {
     public static final String AUTH_KEY = "5JE5XpLu9vO3JkL";
     public static final String AUTH_SECRET = "YEmy6MmHxCs2cWh";
     public static final String STICKER_API_KEY = "847b82c49db21ecec88c510e377b452c";
-
-    public static final String USER_LOGIN = "martin";
-    public static final String USER_PASSWORD = "password";
 
     private static ApplicationSingleton instance;
     public static ApplicationSingleton getInstance() {
@@ -32,6 +31,9 @@ public class ApplicationSingleton extends Application {
         Log.d(TAG, "onCreate");
 
         instance = this;
+
+        Intent i = new Intent(ApplicationSingleton.this, LocationService.class);
+        ApplicationSingleton.this.startService(i);
 
         // Initialise QuickBlox SDK
         //
