@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.pushnotifications;
+package com.moniqwerty.sample.chat.pushnotifications;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.quickblox.sample.chat.R;
-import com.quickblox.sample.chat.ui.activities.DialogsActivity;
+import com.moniqwerty.sample.chat.ui.activities.DialogsActivity;
 
 public class GCMIntentService extends IntentService {
 

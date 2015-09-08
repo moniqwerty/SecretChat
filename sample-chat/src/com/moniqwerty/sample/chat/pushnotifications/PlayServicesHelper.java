@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.pushnotifications;
+package com.moniqwerty.sample.chat.pushnotifications;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,7 +17,7 @@ import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.messages.QBMessages;
 import com.quickblox.messages.model.QBEnvironment;
 import com.quickblox.messages.model.QBSubscription;
-import com.quickblox.sample.chat.ApplicationSingleton;
+import com.moniqwerty.sample.chat.ApplicationSingleton;
 
 import java.io.IOException;
 import java.util.ArrayList;

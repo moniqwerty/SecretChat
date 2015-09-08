@@ -1,15 +1,15 @@
-package com.quickblox.sample.chat.ui.activities;
+package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.EditText;
 import com.quickblox.core.QBEntityCallbackImpl;
-import com.quickblox.sample.chat.ApplicationSingleton;
-import com.quickblox.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.users.model.QBUser;
 import com.quickblox.sample.chat.R;
 
@@ -21,6 +21,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
 
 
     }

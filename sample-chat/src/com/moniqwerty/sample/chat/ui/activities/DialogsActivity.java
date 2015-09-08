@@ -1,10 +1,11 @@
-package com.quickblox.sample.chat.ui.activities;
+package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -18,11 +19,11 @@ import android.widget.ProgressBar;
 
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.chat.model.QBDialog;
-import com.quickblox.sample.chat.core.ChatService;
-import com.quickblox.sample.chat.pushnotifications.Consts;
-import com.quickblox.sample.chat.pushnotifications.PlayServicesHelper;
+import com.moniqwerty.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.pushnotifications.Consts;
+import com.moniqwerty.sample.chat.pushnotifications.PlayServicesHelper;
 import com.quickblox.sample.chat.R;
-import com.quickblox.sample.chat.ui.adapters.DialogsAdapter;
+import com.moniqwerty.sample.chat.ui.adapters.DialogsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class DialogsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogs_activity);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
 
         playServicesHelper = new PlayServicesHelper(this);
 

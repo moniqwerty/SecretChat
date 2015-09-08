@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.core;
+package com.moniqwerty.sample.chat.core;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by igorkhomenko on 4/28/15.
+ * Created by moniqwerty on 4/28/15.
  */
 public class ChatService {
 

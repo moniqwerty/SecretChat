@@ -1,6 +1,7 @@
-package com.quickblox.sample.chat.ui.activities;
+package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +9,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.quickblox.core.QBEntityCallbackImpl;
-import com.quickblox.sample.chat.core.ApplicationSessionStateCallback;
-import com.quickblox.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.core.ApplicationSessionStateCallback;
+import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.users.model.QBUser;
 
 import java.util.List;
 
 /**
- * Created by igorkhomenko on 4/29/15.
+ * Created by moniqwerty on 4/29/15.
  */
 public class BaseActivity extends AppCompatActivity implements ApplicationSessionStateCallback {
     private static final String TAG = BaseActivity.class.getSimpleName();
@@ -45,6 +46,7 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
         }else{
             sessionActive = true;
         }
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
     }
 
     @Override

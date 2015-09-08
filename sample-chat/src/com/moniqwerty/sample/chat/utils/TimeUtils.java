@@ -1,9 +1,9 @@
-package com.quickblox.sample.chat.utils;
+package com.moniqwerty.sample.chat.utils;
 
 import java.util.Date;
 
 /**
- * Created by igorkhomenko on 1/13/15.
+ * Created by moniqwerty on 1/13/15.
  */
 public class TimeUtils {
     public final static long ONE_SECOND = 1000;

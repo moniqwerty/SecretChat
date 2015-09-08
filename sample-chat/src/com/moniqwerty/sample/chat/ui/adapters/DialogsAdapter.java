@@ -1,7 +1,7 @@
-package com.quickblox.sample.chat.ui.adapters;
+package com.moniqwerty.sample.chat.ui.adapters;
 
 /**
- * Created by igorkhomenko on 9/12/14.
+ * Created by moniqwerty on 9/12/14.
  */
 
 import android.app.Activity;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.quickblox.chat.model.QBDialog;
 import com.quickblox.chat.model.QBDialogType;
-import com.quickblox.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.users.model.QBUser;
 import com.quickblox.sample.chat.R;
 

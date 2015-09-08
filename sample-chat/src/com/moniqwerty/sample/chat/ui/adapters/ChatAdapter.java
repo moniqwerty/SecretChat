@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.ui.adapters;
+package com.moniqwerty.sample.chat.ui.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,10 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.chat.model.QBChatMessage;
 import com.quickblox.sample.chat.R;
-import com.quickblox.sample.chat.core.ChatService;
-import com.quickblox.sample.chat.utils.TimeUtils;
+import com.moniqwerty.sample.chat.utils.TimeUtils;
 import com.quickblox.users.model.QBUser;
 
 import java.util.List;

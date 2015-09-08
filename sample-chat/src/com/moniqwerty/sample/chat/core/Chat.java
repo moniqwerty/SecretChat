@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.core;
+package com.moniqwerty.sample.chat.core;
 
 import com.quickblox.chat.model.QBChatMessage;
 

@@ -1,7 +1,8 @@
-package com.quickblox.sample.chat.core;
+package com.moniqwerty.sample.chat.core;
 
 import android.util.Log;
 
+import com.moniqwerty.sample.chat.ui.activities.ChatActivity;
 import com.quickblox.chat.QBChatService;
 import com.quickblox.chat.QBPrivateChat;
 import com.quickblox.chat.QBPrivateChatManager;
@@ -9,7 +10,6 @@ import com.quickblox.chat.exception.QBChatException;
 import com.quickblox.chat.listeners.QBMessageListenerImpl;
 import com.quickblox.chat.listeners.QBPrivateChatManagerListener;
 import com.quickblox.chat.model.QBChatMessage;
-import com.quickblox.sample.chat.ui.activities.ChatActivity;
 
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;

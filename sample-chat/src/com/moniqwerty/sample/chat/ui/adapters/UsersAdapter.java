@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.ui.adapters;
+package com.moniqwerty.sample.chat.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,17 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by igorkhomenko on 9/12/14.
+ * Created by moniqwerty on 9/12/14.
  */
 public class UsersAdapter extends BaseAdapter {
 
     private List<QBUser> dataSource;
     private LayoutInflater inflater;
     private List<QBUser> selected = new ArrayList<QBUser>();
+    private List<QBUser> filtered;
 
     public UsersAdapter(List<QBUser> dataSource, Context ctx) {
         this.dataSource = dataSource;
         this.inflater = LayoutInflater.from(ctx);
+        filtered = new ArrayList<>();
+        for (QBUser u : dataSource)
+        {
+            if (u.getLogin().equals("martin"))
+            {
+                filtered.add(u);
+            }
+        }
     }
 
     public List<QBUser> getSelected() {
@@ -34,12 +43,14 @@ public class UsersAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return dataSource.size();
+        //return dataSource.size();
+        return filtered.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return dataSource.get(position);
+        //return dataSource.get(position);
+        return filtered.get(position);
     }
 
     @Override
@@ -59,21 +70,26 @@ public class UsersAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final QBUser user = dataSource.get(position);
-        if (user != null) {
-            holder.login.setText(user.getLogin());
-            holder.add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if ((((CheckBox) v).isChecked())) {
-                        selected.add(user);
-                    } else {
-                        selected.remove(user);
+        //final QBUser user = dataSource.get(position);
+        final QBUser user = filtered.get(position);
+
+
+            if (user != null) {
+                holder.login.setText(user.getLogin());
+                holder.add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if ((((CheckBox) v).isChecked())) {
+                            selected.add(user);
+                        } else {
+                            selected.remove(user);
+                        }
                     }
-                }
-            });
-            holder.add.setChecked(selected.contains(user));
-        }
+                });
+                holder.add.setChecked(selected.contains(user));
+            }
+        
+
         return convertView;
     }
 

@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat.pushnotifications;
+package com.moniqwerty.sample.chat.pushnotifications;
 
 import android.content.ComponentName;
 import android.content.Context;

@@ -1,7 +1,7 @@
-package com.quickblox.sample.chat.pushnotifications;
+package com.moniqwerty.sample.chat.pushnotifications;
 
 /**
- * Created by igorkhomenko on 4/28/15.
+ * Created by moniqwerty on 4/28/15.
  */
 public class Consts {
     // In GCM, the Sender ID is a project ID that you acquire from the API console

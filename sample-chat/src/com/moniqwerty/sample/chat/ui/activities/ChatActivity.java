@@ -1,8 +1,9 @@
-package com.quickblox.sample.chat.ui.activities;
+package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,11 +26,11 @@ import com.quickblox.chat.model.QBDialogType;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.core.request.QBRequestGetBuilder;
 import com.quickblox.sample.chat.R;
-import com.quickblox.sample.chat.core.Chat;
-import com.quickblox.sample.chat.core.ChatService;
-import com.quickblox.sample.chat.core.GroupChatImpl;
-import com.quickblox.sample.chat.core.PrivateChatImpl;
-import com.quickblox.sample.chat.ui.adapters.ChatAdapter;
+import com.moniqwerty.sample.chat.core.Chat;
+import com.moniqwerty.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.core.GroupChatImpl;
+import com.moniqwerty.sample.chat.core.PrivateChatImpl;
+import com.moniqwerty.sample.chat.ui.adapters.ChatAdapter;
 
 import org.jivesoftware.smack.ConnectionListener;
 import org.jivesoftware.smack.SmackException;
@@ -77,7 +78,7 @@ public class ChatActivity extends BaseActivity implements KeyboardHandleRelative
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
         initViews();
 
         // Init chat if the session is active
@@ -200,7 +201,7 @@ public class ChatActivity extends BaseActivity implements KeyboardHandleRelative
     }
 
     private void showKeyboard() {
-        ((InputMethodManager) messageEditText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(messageEditText, InputMethodManager.SHOW_IMPLICIT);
+        ((InputMethodManager) messageEditText.getContext().getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(messageEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     private void sendChatMessage(String messageText) {

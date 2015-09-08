@@ -1,7 +1,8 @@
-package com.quickblox.sample.chat.ui.activities;
+package com.moniqwerty.sample.chat.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,8 @@ import com.quickblox.core.QBEntityCallback;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.core.request.QBPagedRequestBuilder;
 import com.quickblox.sample.chat.R;
-import com.quickblox.sample.chat.core.ChatService;
-import com.quickblox.sample.chat.ui.adapters.UsersAdapter;
+import com.moniqwerty.sample.chat.core.ChatService;
+import com.moniqwerty.sample.chat.ui.adapters.UsersAdapter;
 import com.quickblox.users.QBUsers;
 import com.quickblox.users.model.QBUser;
 
@@ -43,6 +44,7 @@ public class NewDialogActivity extends BaseActivity implements QBEntityCallback<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_new);
+        getWindow().getDecorView().setBackgroundColor(Color.rgb(240, 248, 255));
 
         usersList = (PullToRefreshListView) findViewById(R.id.usersList);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

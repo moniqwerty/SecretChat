@@ -1,8 +1,9 @@
-package com.quickblox.sample.chat.core;
+package com.moniqwerty.sample.chat.core;
 
 import android.util.Log;
 import android.widget.Toast;
 
+import com.moniqwerty.sample.chat.ui.activities.ChatActivity;
 import com.quickblox.core.QBEntityCallback;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.chat.QBChatService;
@@ -12,7 +13,6 @@ import com.quickblox.chat.exception.QBChatException;
 import com.quickblox.chat.listeners.QBMessageListenerImpl;
 import com.quickblox.chat.model.QBChatMessage;
 import com.quickblox.chat.model.QBDialog;
-import com.quickblox.sample.chat.ui.activities.ChatActivity;
 
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPException;

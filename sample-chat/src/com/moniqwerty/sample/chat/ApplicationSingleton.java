@@ -1,4 +1,4 @@
-package com.quickblox.sample.chat;
+package com.moniqwerty.sample.chat;
 
 import android.app.Application;
 import android.content.pm.PackageInfo;
