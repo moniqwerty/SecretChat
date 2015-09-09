@@ -41,7 +41,7 @@ public class UsersAdapter extends BaseAdapter {
             {
                 location = u.getCustomData().toString();
                 latLong = location.split(";");
-                if (directDistance(myLat,myLon,Double.parseDouble(latLong[0]),Double.parseDouble(latLong[1]))>10)
+                if (directDistance(myLat,myLon,Double.parseDouble(latLong[0]),Double.parseDouble(latLong[1]))>100)
                 {
                     continue;
                 }

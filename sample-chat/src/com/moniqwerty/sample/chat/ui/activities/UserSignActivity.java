@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.moniqwerty.sample.chat.core.ChatService;
 import com.quickblox.core.QBEntityCallbackImpl;
 import com.quickblox.sample.chat.R;
+import com.quickblox.users.QBUsers;
 import com.quickblox.users.model.QBUser;
 
 import java.util.List;
@@ -29,9 +30,19 @@ public class UserSignActivity extends Activity {
         final QBUser user = new QBUser();
         user.setLogin(String.valueOf(username.getText()));
         user.setPassword(String.valueOf(password.getText()));
+        user.setCustomData("41.997229;21.4164357");
+        QBUsers.updateUser(user, new QBEntityCallbackImpl<QBUser>() {
+            @Override
+            public void onSuccess(QBUser qbUser, Bundle bundle) {
 
+            }
+
+            @Override
+            public void onError(List<String> strings) {
+
+            }
+        });
         ChatService.initIfNeed(this);
-
         ChatService.getInstance().signUp(user, new QBEntityCallbackImpl() {
 
             @Override
@@ -72,6 +83,19 @@ public class UserSignActivity extends Activity {
         final QBUser user = new QBUser();
         user.setLogin(String.valueOf(username.getText()));
         user.setPassword(String.valueOf(password.getText()));
+
+        user.setCustomData("41.997229;21.4164357");
+        QBUsers.updateUser(user, new QBEntityCallbackImpl<QBUser>() {
+            @Override
+            public void onSuccess(QBUser qbUser, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onError(List<String> strings) {
+
+            }
+        });
 
         ChatService.initIfNeed(this);
 

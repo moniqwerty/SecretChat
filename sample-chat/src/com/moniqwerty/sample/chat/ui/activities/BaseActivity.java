@@ -162,7 +162,17 @@ public class BaseActivity extends AppCompatActivity implements ApplicationSessio
             final QBUser user = new QBUser();
             user.setId(currentUser.getId());
             user.setCustomData(intent.getStringExtra("Latitude") + ";" + intent.getStringExtra("Longitude"));
-            QBUsers.updateUser(user);
+            QBUsers.updateUser(user, new QBEntityCallbackImpl<QBUser>() {
+                @Override
+                public void onSuccess(QBUser qbUser, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onError(List<String> strings) {
+                    Log.i("**********", strings.toString());
+                }
+            });
         } catch (Exception e) {
             Log.i("**********", "Failed while updating user location data");
         }
